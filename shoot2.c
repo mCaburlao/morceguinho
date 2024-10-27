@@ -29,7 +29,6 @@ Sprites are used for the player, missiles, attackers, and stars.
 
 
 #include "tileset.h"
-//#link "tileset.c"
 
 #define COLS 32
 #define ROWS 28
