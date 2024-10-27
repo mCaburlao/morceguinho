@@ -21,17 +21,9 @@
 
 void draw_bcd_heart(byte col, byte row, byte life) { // pos 27
   static char buf[3]; 
-  buf[0] = (life >= 3 ) ? CHAR('0' + 43) : CHAR('0' + 44);
-  buf[1] = (life >= 2 ) ? CHAR('0' + 43) : CHAR('0' + 44);
-  buf[2] = (life >= 1 ) ? CHAR('0' + 43) : CHAR('0' + 44);
+  buf[0] = (life >= 4 ) ? CHAR('0' + 43) : CHAR('0' + 44);
+  buf[1] = (life >= 3 ) ? CHAR('0' + 43) : CHAR('0' + 44);
+  buf[2] = (life >= 2 ) ? CHAR('0' + 43) : CHAR('0' + 44);
  
   vrambuf_put(NTADR_A(col, row), buf, 3);
-}
-
-void draw_bcd_shield(byte col, byte row) { // pos 27
-  static char buf[3]; 
-  buf[0] = CHAR('0' + 45);
-  buf[1] = CHAR('0' + 46);
- 
-  vrambuf_put(NTADR_A(col, row), buf, 2);
 }
