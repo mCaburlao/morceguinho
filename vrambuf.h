@@ -6,8 +6,6 @@
 
 // VBUFSIZE = maximum update buffer bytes
 #define VBUFSIZE 128
-//#link "utils.c"
-
 
 // update buffer starts at $100 (stack page)
 #define updbuf ((byte*)0x100)

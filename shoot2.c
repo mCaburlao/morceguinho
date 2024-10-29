@@ -309,10 +309,12 @@ void formation_to_attacker(byte formation_index) {
   }
 }
 
+byte ship_sprite = NAME_SHIP;
+
 void draw_player() {
   vsprites[PLYRSPRITE].x = player_x;
   vsprites[PLYRSPRITE].y = player_y;
-  vsprites[PLYRSPRITE].name = NAME_SHIP;
+  vsprites[PLYRSPRITE].name = ship_sprite;
   vsprites[PLYRSPRITE].tag = COLOR_PLAYER;
 }
 
@@ -324,10 +326,16 @@ void move_player() {
   if ((joy & PAD_UP) && player_y > 110) player_y--;
   if ((joy & PAD_DOWN) && player_y <= 190) player_y++;
   // shoot missile?
-  if ((joy & PAD_A) && missiles[PLYRMISSILE].ypos == YOFFSCREEN) {
+  if ((joy & PAD_A) && !(joy & PAD_B) && missiles[PLYRMISSILE].ypos == YOFFSCREEN) {
     missiles[PLYRMISSILE].ypos = player_y-8; // must be multiple of missile speed
     missiles[PLYRMISSILE].xpos = player_x+4; // player X position
     missiles[PLYRMISSILE].dy = -4; // player missile speed
+  }
+  if (joy & PAD_B) {
+    ship_sprite = NAME_S_SHILD;
+  }
+  else {
+    ship_sprite = NAME_SHIP;
   }
   vsprites[PLYRMISSILE].x = player_x;
   draw_player();
@@ -447,7 +455,7 @@ void restart_game() {
 
 void does_missile_hit_player() {
   byte i;
-  if (player_exploding)
+  if (player_exploding || ship_sprite == NAME_S_SHILD)
     return;
   for (i=0; i<MAX_ATTACKERS; i++) {
     if (missiles[i].ypos != YOFFSCREEN && 
