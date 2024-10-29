@@ -27,3 +27,14 @@ void draw_bcd_heart(byte col, byte row, byte life) { // pos 27
  
   vrambuf_put(NTADR_A(col, row), buf, 3);
 }
+
+void draw_ufabc(byte col, byte row) { // pos 27
+  static char buf[5]; 
+  buf[0] =CHAR('U'); 
+  buf[1] =CHAR('F'); 
+  buf[2] =CHAR('A'); 
+  buf[3] =CHAR('B'); 
+  buf[4] =CHAR('C');
+ 
+  vrambuf_put(NTADR_A(col, row), buf, 5);
+}

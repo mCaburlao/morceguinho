@@ -115,6 +115,7 @@ void add_score(word bcd) {
   player_score = bcd_add(player_score, bcd);
   draw_bcd_word(1, 1, player_score);
   draw_bcd_heart(28, 1, life_count);
+  draw_ufabc(14, 1);
 }
 
 void clrobjs() {
