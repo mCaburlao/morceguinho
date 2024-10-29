@@ -468,6 +468,16 @@ void does_missile_hit_player() {
       }
       break;
     }
+    else if (vsprites[i].y != YOFFSCREEN && 
+        in_rect(vsprites[i].x, vsprites[i].y + 16, 
+                player_x, player_y, 16, 16)) {
+      player_exploding = 1;
+      draw_bcd_heart(28, 1, --life_count);
+      if(life_count == 0) {
+        restart_game();
+      }
+      break;
+    }
   }
 }
 
